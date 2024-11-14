@@ -99,7 +99,6 @@ const Login = () => {
 
                     <p class="ptag">처음 이용하시면 회원가입을 해주세요.</p>
                     <Link to={"/join"} class="atag" style={{ textDecoration: "none" }}>회원가입</Link>
-                    <Link to={"/member/findpassword"} class="atag" style={{ textDecoration: "none" }}>비밀번호찾기</Link>
 
                 </div>
 
