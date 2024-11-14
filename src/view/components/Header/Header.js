@@ -191,7 +191,6 @@ const Header = (props) => {
                                     <a class="dropdown-item " href="#">예약정보</a>
                                     <a class="dropdown-item " style={{ cursor: "pointer" }} onClick={BucketClick}>장바구니</a>
                                     <a class="dropdown-item " href="/payment/ordersummary">주문정보</a>
-                                    <a class="dropdown-item " href="/member/memberinfo">회원정보</a>
                                 </div>
                             </li>
                         </div>

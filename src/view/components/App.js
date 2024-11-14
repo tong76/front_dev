@@ -27,15 +27,6 @@ import BoardRead from './Board/BoardRead';
 //회원기능
 import Join from './Member/Join';
 import Login from './Member/Login';
-import FindPassword from './Member/FindPassword';
-import EmailAuth from './Member/EmailAuth';
-import UpdatePassword from './Member/UpdatePassword';
-
-//회원정보
-import MemberInfo from './Member/MemberInfo';
-import ModifyInfo from './Member/ModifyInfo';
-import DeleteInfo from './Member/DeleteInfo';
-
 
 //굿즈
 import GoodsPopupList from './Goods/GoodsPopupList';
@@ -117,12 +108,6 @@ class App extends Component {
           <Route path='/payment/orderdetail' Component={OrderDetail} />
           <Route path="/login" Component={Login} />
           <Route path="/join" Component={Join} />
-          <Route path="/member/memberinfo" Component={MemberInfo} />
-          <Route path="/member/modifyinfo" Component={ModifyInfo} />
-          <Route path="/member/deleteinfo" Component={DeleteInfo} />
-          <Route path="/member/findpassword" Component={FindPassword} />
-          <Route path="/member/emailauth" Component={EmailAuth} />
-          <Route path="/member/updatepassword" Component={UpdatePassword} />
           <Route path="/popup/map" Component={Map} />
         </Routes>
         <Footer isVisible={this.state.isVisible} />
