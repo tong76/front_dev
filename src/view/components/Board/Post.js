@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Post = ({ boardData, isAuthor, boardDelete }) => {
+const Post = ({ boardData, isAuthor, boardDelete, append_attachList }) => {
 
     return (
         <section className="intro-single">
@@ -31,6 +31,46 @@ const Post = ({ boardData, isAuthor, boardDelete }) => {
                             <div className="post-content color-text-a">
                                 {boardData.bcon}
                             </div>
+
+                            <div className="attach-footer">
+                                <ul className="mailbox-attachments clearfix uploadedList">
+                                    {append_attachList.map((file, index) => (
+                                        <li key={index}>
+                                            <span className="mailbox-attachment-icon has-img">
+                                                {file.icon ? (
+                                                    /* 이미지 파일이 아닌경우 */
+                                                    <a href={file.Link}>
+                                                        <img src={file.icon} alt="Attachment Icon" style={{ width: "100px", height: "100px" }} />
+                                                    </a>
+                                                ) : (
+                                                    <a href={file.getLink} target="blank">
+                                                        <img src={file.imgSrc} alt="Attachment" />
+                                                    </a>
+                                                )}
+                                            </span>
+                                            <div className="mailbox-attachment-info">
+                                                {file.icon ? (
+                                                    <>
+                                                        {/* 이미지 파일이 아닌경우 */}
+                                                        <a href={file.Link} className="mailbox-attachment-name">{file.fileName}</a>
+                                                        <a href={file.fullName} onClick={(e) => {
+                                                            e.preventDefault();
+                                                        }}></a>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <a href={file.getLink} target="blank" className="mailbox-attachment-name">{file.fileName}</a>
+                                                        <a href={file.fullName} onClick={(e) => {
+                                                            e.preventDefault();
+                                                        }}></a>
+                                                    </>
+                                                )}
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
                             <div className="post-footer">
                                 <div className="post-share">
                                     <ul className="list-inline socials">

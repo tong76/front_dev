@@ -42,6 +42,15 @@ import GoodsPopupList from './Goods/GoodsPopupList';
 import GoodsList from './Goods/GoodsList';
 import GoodsDetail from './Goods/GoodsDetail';
 
+//장바구니 및 구매
+import BucketList from './Bucket/BucketList';
+import PaymentWindow from './Payment/PaymentWindow';
+import CheckoutPage from './Payment/CheckoutPage';
+import SuccessPage from './Payment/SuccessPage';
+import FailPage from './Payment/FailPage';
+import OrderSummary from './Payment/OrderSummary';
+import OrderDetail from './Payment/OrderDetail';
+
 //지도
 import Map from './Popup/MapComponent';
 
@@ -71,6 +80,7 @@ class App extends Component {
       window.location.pathname === "/goods/goodspopuplist" ||
       window.location.pathname.includes("/goods/goodslist") ||
       window.location.pathname.includes("/goods/goodsdetail") ||
+      window.location.pathname === ("/bucket/bucketlist") ||
       window.location.pathname === "/popup/popuplist" ||
       window.location.pathname === "/board/boardlist" ||
       window.location.pathname.includes("/board/boardread") ||
@@ -98,6 +108,13 @@ class App extends Component {
           <Route path='/goods/goodspopuplist' Component={GoodsPopupList} />
           <Route path='/goods/goodslist/:sno' Component={GoodsList} />
           <Route path='/goods/goodsdetail/:sno/:pno' Component={GoodsDetail} />
+          <Route path='/bucket/bucketlist' Component={BucketList} />
+          <Route path='/payment/paymentwindow' Component={PaymentWindow} />
+          <Route path='/payment/checkoutpage' Component={CheckoutPage} />
+          <Route path='/payment/success' Component={SuccessPage} />
+          <Route path='/payment/fail' Component={FailPage} />
+          <Route path='/payment/ordersummary' Component={OrderSummary} />
+          <Route path='/payment/orderdetail' Component={OrderDetail} />
           <Route path="/login" Component={Login} />
           <Route path="/join" Component={Join} />
           <Route path="/member/memberinfo" Component={MemberInfo} />
