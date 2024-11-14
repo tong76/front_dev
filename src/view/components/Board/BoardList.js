@@ -30,34 +30,38 @@ const BoardList = () => {
         axios.get(url)
             .then(response => {
                 const { list, pageMaker } = response.data;
+
                 if (list.length === 0) {
-                    if (searchParams) {
-                        // 검색 결과가 없을 때 처리
+                    // 검색 결과가 없을 때
+                    if (searchParams && searchParams.keyword) {
+                        // 검색 모드일 때만 알림을 띄우고, 데이터를 다시 불러오지 않음
+                        if (!isSearchMode) {
+                            setIsSearchMode(true); // 검색 모드로 설정
+                            setBoardList([]); // 리스트 비우기
+                            setTotalPages(0); // 총 페이지 0으로 설정
+                            setStartPage(0); // 시작 페이지 0으로 설정
+                            setEndPage(0); // 끝 페이지 0으로 설정
+                        }
                         Swal.fire({
                             title: '검색 결과가 없습니다.',
                             text: '검색어를 수정하여 다시 시도해 보세요.',
                             icon: 'info',
                             confirmButtonText: '확인'
                         });
-                        // 검색 모드에서 초기화
-                        setIsSearchMode(false);
-                        setKeyword('');
-                        setSearchtype('');
-                        setCurrentPage(1);
-                        fetchBoardList(1); // 전체 리스트로 초기화
                     } else {
-                        // 전체 리스트도 비어있다면
-                        setBoardList([]);
-                        setTotalPages(0);
-                        setStartPage(0);
-                        setEndPage(0);
+                        // 전체 리스트가 비어있는 경우
+                        setBoardList([]); // 리스트 비우기
+                        setTotalPages(0); // 총 페이지 0으로 설정
+                        setStartPage(0); // 시작 페이지 0으로 설정
+                        setEndPage(0); // 끝 페이지 0으로 설정
                     }
                 } else {
-                    setBoardList(list);
+                    setBoardList(list); // 정상적으로 데이터가 있다면 설정
                     setTotalPages(pageMaker.totalPage);
                     setStartPage(pageMaker.startPage);
                     setEndPage(pageMaker.endPage);
 
+                    // 검색 모드 여부에 따라 페이지를 숨기고 보여주기
                     if (searchParams) {
                         setIsSearchMode(true);
                         $("#cpaging").hide();
@@ -80,6 +84,12 @@ const BoardList = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
+
+        if (searchtype === "n") {
+            // ---전체--- 선택 시, 검색 없이 전체 게시판 목록을 불러옴
+            fetchBoardList(1);
+            return;
+        }
 
         if (!searchtype || !keyword) {
             Swal.fire({
@@ -108,11 +118,6 @@ const BoardList = () => {
         const currentPageGroup = Math.ceil(currentPage / pagesPerGroup);
         let startPage = (currentPageGroup - 1) * pagesPerGroup + 1;
         let endPage = Math.min(startPage + pagesPerGroup - 1, totalPages);
-
-        if (currentPageGroup > 1) {
-            startPage = (currentPageGroup - 1) * pagesPerGroup + 1;
-            endPage = Math.min(startPage + pagesPerGroup - 1, totalPages);
-        }
 
         for (let i = startPage; i <= endPage; i++) {
             const isCurrentPage = i === currentPage;
