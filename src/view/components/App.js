@@ -42,6 +42,8 @@ import GoodsPopupList from './Goods/GoodsPopupList';
 import GoodsList from './Goods/GoodsList';
 import GoodsDetail from './Goods/GoodsDetail';
 
+//지도
+import Map from './Popup/MapComponent';
 
 //css
 import '../../resources/assets/img/favicon.png';
@@ -71,7 +73,8 @@ class App extends Component {
       window.location.pathname.includes("/goods/goodsdetail") ||
       window.location.pathname === "/popup/popuplist" ||
       window.location.pathname === "/board/boardlist" ||
-      window.location.pathname.includes("/board/boardread")
+      window.location.pathname.includes("/board/boardread") ||
+      window.location.pathname.includes("/popup/popupread")
     ) {
       return {
         isVisible: true
@@ -103,6 +106,7 @@ class App extends Component {
           <Route path="/member/findpassword" Component={FindPassword} />
           <Route path="/member/emailauth" Component={EmailAuth} />
           <Route path="/member/updatepassword" Component={UpdatePassword} />
+          <Route path="/popup/map" Component={Map} />
         </Routes>
         <Footer isVisible={this.state.isVisible} />
       </div>

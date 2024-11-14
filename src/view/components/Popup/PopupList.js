@@ -31,7 +31,7 @@ const PopupList = () => {
                                 <div className="card-overlay-a-content">
                                     <div className="card-header-a">
                                         <h2 className="card-title-a">
-                                            <Link to={`/popup/popupRead/${pop.sno}`}>{pop.sname}</Link>
+                                            <Link to={`/popup/popupread/${pop.sno}`}>{pop.sname}</Link>
                                         </h2>
                                     </div>
                                     <div className="card-body-a">
