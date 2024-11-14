@@ -12,8 +12,8 @@ const BoardRegist = () => {
     const [content, setContent] = useState('');
     const [append_attachList, setAppend_attachList] = useState([]);
 
-
     useEffect(() => {
+        
         const cookie_userid = cookie.load('userid');
         const cookie_usernm = cookie.load('username');
         const cookie_password = cookie.load('userpassword');
@@ -31,6 +31,7 @@ const BoardRegist = () => {
             $("#main").hide();
         }
         callSessionInfoApi();
+        
     }, [append_attachList]);
 
     const callSessionInfoApi = () => {
@@ -118,6 +119,7 @@ const BoardRegist = () => {
         }
     };
 
+    // 파일 포맷 코드
     const getFileInfo = (data) => {
         // data가 문자열이라 가정하고, 필요한 정보를 추출
         const filePath = data; // 서버에서 받은 파일 경로
@@ -155,6 +157,7 @@ const BoardRegist = () => {
         };
     };
 
+    // 이미지면 원본 이미지, 기타 파일이면 기본 아이콘으로 변경
     const getFileIcon = (fileName) => {
         const extension = fileName.split('.').pop().toLowerCase();
 
@@ -238,6 +241,7 @@ const BoardRegist = () => {
                                                     value={content} onChange={(e) => setContent(e.target.value)} />
                                             </div>
                                         </div>
+
                                         <div className="form-group">
                                             File DROP Here
                                             <div className="fileDrop"
@@ -246,7 +250,7 @@ const BoardRegist = () => {
                                             </div>
                                         </div>
 
-                                        <div className="box-footer">
+                                        <div className="attach-footer">
                                             <ul className="mailbox-attachments clearfix uploadedList">
                                                 {append_attachList.map((file, index) => (
                                                     <li key={index}>
